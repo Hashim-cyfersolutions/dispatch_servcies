@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "FastLane Dispatch — Truck dispatch for owner operators & small fleets",
+  title: "Dispatch — Truck dispatch for owner operators & small fleets",
   description:
     "A dedicated dispatcher finds, negotiates and books your loads, then handles the paperwork and broker calls. You drive.",
 };

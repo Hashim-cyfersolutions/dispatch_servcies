@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useState, type FormEvent, type ReactNode } from "react";
 import { css } from "@/lib/css";
 import { HButton } from "./HLink";
 
@@ -27,55 +27,68 @@ function Field({ label, children }: { label: string; children: ReactNode }) {
   );
 }
 
-function Select({ options }: { options: string[] }) {
-  return (
-    <select style={css(s.field)}>
-      {options.map((o) => (
-        <option key={o}>{o}</option>
-      ))}
-    </select>
-  );
-}
-
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [pending, setPending] = useState(false);
+  const [error, setError] = useState("");
+
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (pending) return;
+    setPending(true);
+    setError("");
+    try {
+      const body = Object.fromEntries(new FormData(e.currentTarget));
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      if (!res.ok) throw new Error();
+      setSubmitted(true);
+    } catch {
+      setError("Something went wrong. Please try again or call us directly.");
+    } finally {
+      setPending(false);
+    }
+  }
 
   return (
     <div id="book" style={css(s.box)}>
       {!submitted ? (
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            setSubmitted(true);
-          }}
-          style={css(s.form)}
-        >
+        <form onSubmit={onSubmit} style={css(s.form)}>
           <div style={css(s.title)}>Carrier onboarding</div>
+          <input
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            style={{ position: "absolute", left: "-9999px", width: 1, height: 1, opacity: 0 }}
+          />
           <div style={css(s.grid)}>
             <Field label="Full name">
-              <input required style={css(s.field)} />
+              <input name="name" required autoComplete="name" style={css(s.field)} />
             </Field>
             <Field label="Phone">
-              <input required type="tel" style={css(s.field)} />
+              <input name="phone" required type="tel" autoComplete="tel" style={css(s.field)} />
             </Field>
             <Field label="MC number">
-              <input style={css(s.field)} />
+              <input name="mc" style={css(s.field)} />
             </Field>
-            <Field label="DOT number">
-              <input style={css(s.field)} />
-            </Field>
-            <Field label="Equipment">
-              <Select options={["Dry van", "Reefer", "Flatbed", "Step deck", "Power only", "Box truck"]} />
-            </Field>
-            <Field label="Fleet size">
-              <Select options={["1 truck", "2–5 trucks", "6–15 trucks", "16+ trucks"]} />
+            <Field label="Email">
+              <input name="email" required type="email" autoComplete="email" style={css(s.field)} />
             </Field>
           </div>
-          <Field label="Preferred lanes">
-            <input placeholder="e.g. Midwest to Southeast" style={css(s.field)} />
+          <Field label="Message or note">
+            <textarea name="message" rows={3} style={{ ...css(s.field), resize: "vertical" }} />
           </Field>
+          {error && (
+            <p role="alert" style={{ ...css(s.p), color: "#b3261e", fontSize: 14 }}>
+              {error}
+            </p>
+          )}
           <HButton type="submit" style={s.btn} hover="background:oklch(0.62 0.11 70)">
-            Request a dispatcher call
+            {pending ? "Sending…" : "Request a dispatcher call"}
           </HButton>
         </form>
       ) : (

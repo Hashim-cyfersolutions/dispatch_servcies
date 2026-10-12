@@ -4,9 +4,9 @@ import { ImageSlot } from "@/components/ImageSlot";
 import { BgVideo } from "@/components/BgVideo";
 import { Faq } from "@/components/Faq";
 import { ContactForm } from "@/components/ContactForm";
+import { Logo } from "@/components/Logo";
 
 // Original prop: 'form' | 'contact-only'
-const contactMode: "form" | "contact-only" = "form";
 
 const faqs: [string, string][] = [
   ["What does dispatch cost?", "A percentage of each load's gross. No setup fee, no monthly minimum, and you only pay when your truck is moving."],
@@ -73,8 +73,6 @@ const eyebrow = "font-size:13px;letter-spacing:0.22em;text-transform:uppercase;c
 const eyebrowLight = "font-size:13px;letter-spacing:0.22em;text-transform:uppercase;color:oklch(0.82 0.1 75)";
 const serif = "font-family:'Instrument Serif',serif";
 const h2Style = `margin:0;${serif};font-weight:400;font-size:clamp(44px,5vw,72px);line-height:1;letter-spacing:-0.015em`;
-const contactRow = "display:flex;justify-content:space-between;gap:16px;padding:20px 0;border-bottom:1px solid #2c323b;font-size:18px";
-const contactLabel = "font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#9a958c";
 const footerHead = "font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#7d7870";
 
 export default function Page() {
@@ -89,9 +87,9 @@ export default function Page() {
         <div style={css("position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,15,20,0.82) 0%,rgba(12,15,20,0.45) 55%,rgba(12,15,20,0.2) 100%),linear-gradient(0deg,rgba(12,15,20,0.7) 0%,rgba(12,15,20,0) 40%);pointer-events:none")} />
 
         <header style={css("position:relative;z-index:2;max-width:1360px;width:100%;box-sizing:border-box;margin:0 auto;padding:28px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap")}>
-          <a href="#top" style={css("display:flex;align-items:baseline;gap:8px")}>
-            <span style={css(`${serif};font-size:30px;letter-spacing:-0.01em`)}>FastLane</span>
-            <span style={css("font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:#cfc9bd")}>Dispatch</span>
+          <a href="#top" style={css("display:flex;align-items:center;gap:10px")}>
+            <Logo />
+            <span style={css(`${serif};font-size:30px;letter-spacing:-0.01em`)}>Dispatch</span>
           </a>
           <nav style={css("display:flex;gap:32px;font-size:15px;flex-wrap:wrap;color:#e6e1d7")}>
             <a href="#services">Services</a>
@@ -112,7 +110,7 @@ export default function Page() {
             <p style={css("margin:0;font-size:19px;line-height:1.6;max-width:500px;color:#ddd8ce;text-wrap:pretty")}>A dedicated dispatcher finds, negotiates and books your loads, then handles the paperwork and broker calls. You drive.</p>
             <div style={css("display:flex;gap:12px;flex-wrap:wrap")}>
               <HLink href="#contact" style="background:#f5f2ec;color:#12161c;padding:17px 30px;border-radius:999px;font-weight:600;font-size:16px" hover="background:oklch(0.82 0.1 75);color:#12161c">Start onboarding</HLink>
-              <HLink href="#process" style="padding:17px 30px;border-radius:999px;font-weight:500;font-size:16px;border:1px solid rgba(245,242,236,0.5)" hover="border-color:#f5f2ec;color:#f5f2ec">How it works</HLink>
+              <HLink href="#process" style="padding:17px 30px;border-radius:999px;font-weight:500;font-size:16px;border-width:1px;border-style:solid;border-color:rgba(245,242,236,0.5)" hover="border-color:#f5f2ec;color:#f5f2ec">How it works</HLink>
             </div>
           </div>
         </div>
@@ -138,7 +136,7 @@ export default function Page() {
             <h2 style={css(`${h2Style};text-wrap:balance`)}>The business side of trucking, <em>handled.</em></h2>
             <p style={css('margin:0;font-size:18px;line-height:1.65;color:#474b52;max-width:440px;text-wrap:pretty')}>Everything between &quot;truck available&quot; and &quot;invoice paid&quot; is our job. Your dispatcher works your lanes every day.</p>
             <div style={css("position:relative;aspect-ratio:4/3;border-radius:6px;overflow:hidden;margin-top:12px")}>
-              <ImageSlot src="https://unsplash.com/photos/S9KZmxx3OJE/download?w=1400" alt="Truck on the road" credit="Photo by Bernd Dittrich on Unsplash" creditHref="https://unsplash.com/@hdbernd" />
+              <ImageSlot src="https://unsplash.com/photos/S9KZmxx3OJE/download?w=1400" alt="Truck on the road" />
             </div>
           </div>
           <div style={css("display:flex;flex-direction:column;border-top:1px solid #12161c")}>
@@ -192,12 +190,12 @@ export default function Page() {
       <section id="about" style={css("background:#ebe6dc")}>
         <div style={css("max-width:1360px;margin:0 auto;padding:140px 40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:80px;align-items:center")}>
           <div style={css("position:relative;aspect-ratio:4/5;border-radius:6px;overflow:hidden")}>
-            <ImageSlot src="https://unsplash.com/photos/nbRgZltoOck/download?w=1400" alt="Your dispatch team" credit="Photo by Wolfgang Hasselmann on Unsplash" creditHref="https://unsplash.com/@wolfgang_hasselmann" />
+            <ImageSlot src="https://unsplash.com/photos/nbRgZltoOck/download?w=1400" alt="Your dispatch team" />
           </div>
           <div style={css("display:flex;flex-direction:column;gap:28px")}>
-            <div style={css(eyebrow)}>About FastLane</div>
+            <div style={css(eyebrow)}>About Dispatch</div>
             <h2 style={css(`${h2Style};text-wrap:balance`)}>Big-fleet dispatch for the <em>one-truck operation.</em></h2>
-            <p style={css("margin:0;font-size:18px;line-height:1.65;color:#474b52;max-width:520px;text-wrap:pretty")}>FastLane Dispatch was started to give owner operators and small fleets the same advantage large carriers get from a full-time dispatch team. Every account gets one dispatcher who learns your truck, your lanes and your schedule.</p>
+            <p style={css("margin:0;font-size:18px;line-height:1.65;color:#474b52;max-width:520px;text-wrap:pretty")}>Dispatch was started to give owner operators and small fleets the same advantage large carriers get from a full-time dispatch team. Every account gets one dispatcher who learns your truck, your lanes and your schedule.</p>
             <div style={css("display:flex;flex-direction:column;border-top:1px solid #c9c2b5")}>
               {promises.map((p) => (
                 <div key={p} style={css("display:flex;gap:16px;align-items:center;padding:15px 0;border-bottom:1px solid #c9c2b5;font-size:16px")}>
@@ -220,7 +218,7 @@ export default function Page() {
           {equipment.map((eq) => (
             <div key={eq.id} style={css("display:flex;flex-direction:column;gap:16px")}>
               <div style={css("position:relative;aspect-ratio:3/2;border-radius:6px;overflow:hidden;background:#e4dfd5")}>
-                <ImageSlot src={eq.src} alt={eq.name} credit={eq.credit} creditHref={eq.href} />
+                <ImageSlot src={eq.src} alt={eq.name} />
               </div>
               <div style={css("display:flex;justify-content:space-between;align-items:baseline;gap:12px")}>
                 <div style={css(`${serif};font-size:28px`)}>{eq.name}</div>
@@ -273,7 +271,7 @@ export default function Page() {
           {testimonials.map((t) => (
             <figure key={t.quote} style={css("margin:0;display:flex;flex-direction:column;gap:28px")}>
               <div style={css("position:relative;aspect-ratio:4/3;border-radius:6px;overflow:hidden;background:#e4dfd5")}>
-                <ImageSlot src={t.src} alt="Driver photo" credit={t.credit} creditHref={t.href} />
+                <ImageSlot src={t.src} alt="Driver photo" />
               </div>
               <blockquote style={css(`margin:0;${serif};font-size:28px;line-height:1.25;text-wrap:pretty`)}>“{t.quote}”</blockquote>
               <figcaption style={css("display:flex;gap:14px;align-items:center")}>
@@ -305,17 +303,10 @@ export default function Page() {
       <section id="contact" style={css("background:#12161c;color:#f5f2ec")}>
         <div style={css("max-width:1360px;margin:0 auto;padding:140px 40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:80px")}>
           <div style={css("display:flex;flex-direction:column;gap:32px")}>
-            <div style={css(eyebrowLight)}>Get in touch</div>
             <h2 style={css(`margin:0;${serif};font-weight:400;font-size:clamp(52px,6.5vw,104px);line-height:0.95;letter-spacing:-0.02em`)}>Ready to <em>roll?</em></h2>
-            <p style={css("margin:0;font-size:18px;line-height:1.6;max-width:460px;color:#c9c4ba")}>Send your details or book a 15-minute call. A dispatcher will get back to you the same day.</p>
-            <div style={css("display:flex;flex-direction:column;border-top:1px solid #2c323b")}>
-              <HLink href="mailto:dispatch@fastlanedispatch.com" style={contactRow} hover="color:oklch(0.82 0.1 75)"><span style={css(contactLabel)}>Email</span><span>dispatch@fastlanedispatch.com</span></HLink>
-              <HLink href="https://wa.me/10000000000" style={contactRow} hover="color:oklch(0.82 0.1 75)"><span style={css(contactLabel)}>WhatsApp</span><span>Message us →</span></HLink>
-              <HLink href="tel:+10000000000" style={contactRow} hover="color:oklch(0.82 0.1 75)"><span style={css(contactLabel)}>Phone</span><span>+1 (000) 000-0000</span></HLink>
-              <HLink href="#book" style={contactRow} hover="color:oklch(0.82 0.1 75)"><span style={css(contactLabel)}>Book a call</span><span>Pick a 15-min slot →</span></HLink>
-            </div>
+            <p style={css("margin:0;font-size:18px;line-height:1.6;max-width:460px;color:#c9c4ba")}>Send your details and a dispatcher will call you the same day.</p>
           </div>
-          {contactMode === "form" && <ContactForm />}
+          <ContactForm />
         </div>
       </section>
 
@@ -324,9 +315,9 @@ export default function Page() {
         <div style={css("max-width:1360px;margin:0 auto;padding:72px 40px 40px;display:flex;flex-direction:column;gap:56px")}>
           <div style={css("display:flex;justify-content:space-between;gap:48px;flex-wrap:wrap")}>
             <div style={css("display:flex;flex-direction:column;gap:14px;max-width:340px")}>
-              <div style={css("display:flex;align-items:baseline;gap:8px;color:#f5f2ec")}>
-                <span style={css(`${serif};font-size:30px`)}>FastLane</span>
-                <span style={css("font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:#9a958c")}>Dispatch</span>
+              <div style={css("display:flex;align-items:center;gap:10px;color:#f5f2ec")}>
+                <Logo />
+                <span style={css(`${serif};font-size:30px`)}>Dispatch</span>
               </div>
               <p style={css("margin:0;font-size:15px;line-height:1.6")}>Dispatch for owner operators and small fleets across the lower 48.</p>
             </div>
@@ -337,15 +328,12 @@ export default function Page() {
               </div>
               <div style={css("display:flex;flex-direction:column;gap:12px")}>
                 <div style={css(footerHead)}>Contact</div>
-                <a href="mailto:dispatch@fastlanedispatch.com">dispatch@fastlanedispatch.com</a>
-                <a href="tel:+10000000000">+1 (000) 000-0000</a>
-                <a href="#contact">Book a call</a>
+                <a href="mailto:contact@cyfersolutions.io">contact@cyfersolutions.io</a>
               </div>
             </div>
           </div>
           <div style={css("display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid #232830;padding-top:24px;font-size:13px;color:#7d7870")}>
-            <div>© 2026 FastLane Dispatch. All rights reserved.</div>
-            <div>Videos: Mixkit · Photos: Unsplash</div>
+            <div>© 2026 Dispatch. All rights reserved.</div>
           </div>
         </div>
       </footer>
